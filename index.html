@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Card Game</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f0f2f5;
+      padding: 20px;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .game-info {
+      display: flex;
+      justify-content: space-between;
+      width: 500px;
+      margin-bottom: 20px;
+      font-size: 1.2em;
+    }
+    #gameBoard {
+      display: grid;
+      grid-template-columns: repeat(4, 100px);
+      grid-gap: 10px;
+      perspective: 1000px;
+    }
+    .card {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+      cursor: pointer;
+    }
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+    }
+    .card-front {
+      background: #3498db;
+      color: white;
+      transform: rotateY(180deg);
+    }
+    .card-back {
+      background: #2c3e50;
+      color: #2c3e50;
+    }
+    #restartBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    #restartBtn:hover {
+      background: #c0392b;
+    }
+    .win-message {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 3em;
+      z-index: 100;
+      display: none;
+    }
+    .win-message.show {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧠 Memory Card Game</h1>
+  <div class="game-info">
+    <div>Moves: <span id="moves">0</span></div>
+    <div>Time: <span id="timer">0</span>s</div>
+  </div>
+  <div id="gameBoard"></div>
+  <button id="restartBtn">Restart Game</button>
+  <div class="win-message" id="winMessage">
+    <h2>You Win! 🎉</h2>
+    <p>Moves: <span id="finalMoves">0</span></p>
+    <p>Time: <span id="finalTime">0</span> seconds</p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
